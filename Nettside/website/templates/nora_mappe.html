@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Nora
+{% endblock %}
+
+{% block content %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var answerInput = document.getElementById('svar');
+            var answerForm = document.getElementById('answerForm');
+            
+            answerForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission behavior
+                var submittedAnswer = answerInput.value.trim();
+                
+                if (submittedAnswer === '22-07-2003') {
+                    answerInput.disabled = true; // Disable input field
+                    answerInput.style.backgroundColor = '#8BC34A';
+                    document.getElementById('submitBtn').disabled = true; // Disable submit button
+                }
+            });
+        });
+    </script>
+
+    <h1 align="center">Julepresang</h1>
+    <h2 align="center">Du trodde vel ikke du skulle få julegave uten å jobbe for den?</h2>
+    <h3 align="center">For å få koden, må du vise at du har fulgt med dette året!</h3>
+
+    <form action="{{ url_for('views.nora') }}" method="POST" align="center" id="answerForm">
+        <p> </p>
+        <label for="svar">Hvilken dato ble jeg født?: [dd-mm-YYYY]</label>
+        <input type="text" name="svar" id="svar">
+        <button type="submit" id="submitBtn">Sjekk svaret</button>
+    </form>
+
+
+{% endblock %}
+
+
