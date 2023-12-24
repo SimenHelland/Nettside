@@ -1,31 +1,303 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block title %}Nora sin gave{% endblock %}
 
-{% block title %}
-    Nora
-{% endblock %}
 
 {% block content %}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var answerInput = document.getElementById('svar');
+            var nextAnswerInput = document.getElementById('nextQuestionAnswer');
+            var nextSubmitBtn = document.getElementById('nextSubmitBtn');
+            var nextQuestionForm = document.getElementById('nextQuestionForm');
             var answerForm = document.getElementById('answerForm');
+            var correctAnswer = '22-07-2003';
+            var correctNextAnswer = 'Elise';
+            var finalMessage = document.getElementById('finalMessage');
+            var thirdAnswerInput = document.getElementById('thirdQuestionAnswer');
+            var thirdSubmitBtn = document.getElementById('thirdSubmitBtn');
+            var thirdQuestionForm = document.getElementById('thirdQuestionForm');
+            var correctThirdAnswer = '70';
+            var fourthAnswerInput = document.getElementById('finalMessage')
+            var fourthSubmitBtn = document.getElementById('fourthSubmitBtn');
+            var fourthQuestionForm = document.getElementById('fourthQuestionForm');
+            var correctFourthAnswer = '67,5';
+            var fifthAnswerInput = document.getElementById('finalMessage')
+            var fifthSubmitBtn = document.getElementById('fifthSubmitBtn');
+            var fifthQuestionForm = document.getElementById('fifthQuestionForm');
+            var correctFifthAnswer = '03-09-2023';
+            var sixthAnswerInput = document.getElementById('finalMessage');
+            var sixthSubmitBtn = document.getElementById('sixthSubmitBtn');
+            var sixthQuestionForm = document.getElementById('sixthQuestionForm');
+            var correctSixthAnswer = '03-07-2023';
             
+
             answerForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission behavior
+                event.preventDefault(); // Prevent default form submission
+
                 var submittedAnswer = answerInput.value.trim();
-                
-                if (submittedAnswer === '22-07-2003') {
-                    answerInput.disabled = true; // Disable input field
+
+                if (submittedAnswer === correctAnswer) {
                     answerInput.style.backgroundColor = '#8BC34A';
-                    document.getElementById('submitBtn').disabled = true; // Disable submit button
+                    answerInput.disabled = true;
+                    var correctMessage = document.createElement("p");
+                    correctMessage.textContent = "Veldig bra!!. Elegant start!!";
+                    correctMessage.style.color = "green";
+                    answerForm.appendChild(correctMessage);
+                    document.getElementById('submitBtn').disabled = true;
+
+
+                    document.getElementById('nextQuestion').style.display = 'block';
+
+                } else {
+                    // Display error message for the first question
+                    var errorMessage = document.createElement('p');
+                    errorMessage.textContent = 'Din sviker!!';
+                    errorMessage.style.color = 'red';
+
+                    if (!document.getElementById('errorMessage')) {
+                        errorMessage.id = 'errorMessage';
+                        answerForm.appendChild(errorMessage);
+                    }
                 }
             });
-        });
+
+
+
+            
+
+            nextQuestionForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                var submittedNextAnswer = nextAnswerInput.value.trim();
+
+                if (submittedNextAnswer === correctNextAnswer) {
+                    nextAnswerInput.style.backgroundColor = '#8BC34A';
+                    nextAnswerInput.disabled = true;
+                    nextSubmitBtn.disabled = true;
+
+                    var nextCorrectMessage = document.createElement("p");
+                    nextCorrectMessage.textContent = "Veldig bra. Nå begynner du å nærme deg, bare 20 spørsmål til!";
+                    nextCorrectMessage.style.color = "green";
+                    
+                    var messageContainer = document.createElement("div");
+                    messageContainer.appendChild(nextCorrectMessage)
+                    nextQuestionForm.appendChild(messageContainer);
+
+
+                    document.getElementById('thirdQuestion').style.display = 'block';
+
+                } else {
+                    // Display error message for the second question
+                    var nextErrorMessage = document.createElement('p');
+                    nextErrorMessage.textContent = 'Nesten, prøv igjen, Husk stor første bokstav! :)';
+                    nextErrorMessage.style.color = 'red';
+
+                    if (!document.getElementById('nextErrorMessage')) {
+                        nextErrorMessage.id = 'nextErrorMessage';
+                        nextQuestionForm.appendChild(nextErrorMessage);
+
+                        // Optionally hide the third question if the second answer is incorrect
+                        document.getElementById('thirdQuestion').style.display = 'none';
+                    }
+                }
+            });
+
+
+
+
+
+
+            thirdQuestionForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                var submittedThirdAnswer = thirdAnswerInput.value.trim();
+
+                if (submittedThirdAnswer === correctThirdAnswer) {
+                    thirdAnswerInput.style.backgroundColor = '#8BC34A';
+                    thirdAnswerInput.disabled = true;
+                    thirdSubmitBtn.disabled = true;
+
+
+                    var thirdCorrectMessage = document.createElement("p");
+                    thirdCorrectMessage.textContent = "Veldig bra. Nå begynner du å nærme deg, bare 19 spørsmål til!";
+                    thirdCorrectMessage.style.color = "green";
+                    
+                    var thirdMessageContainer = document.createElement("div");
+                    thirdMessageContainer.appendChild(thirdCorrectMessage)
+                    thirdQuestionForm.appendChild(thirdMessageContainer);
+
+                    document.getElementById('fourthQuestion').style.display = 'block';
+
+                    
+                } else {
+                    // Display error message for the third question
+                    var thirdErrorMessage = document.createElement('p');
+                    thirdErrorMessage.textContent = '';
+                    thirdErrorMessage.style.color = 'red';
+
+                    if (!document.getElementById('thirdErrorMessage')) {
+                        thirdErrorMessage.id = 'thirdErrorMessage';
+                        thirdQuestionForm.appendChild(thirdErrorMessage);
+
+                        document.getElementById('fourthQuestion').style.display = 'none';
+                    }
+                }
+            });
+
+
+
+
+
+
+            fourthQuestionForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                var submittedFourthAnswer = fourthQuestionAnswer.value.trim();
+
+                if (submittedFourthAnswer === correctFourthAnswer) {
+                    // Code block for handling correct answer
+                    fourthQuestionAnswer.style.backgroundColor = '#8BC34A';
+                    fourthQuestionAnswer.disabled = true;
+                    fourthSubmitBtn.disabled = true;
+
+                    var fourthCorrectMessage = document.createElement("p");
+                    fourthCorrectMessage.textContent = "Dette er en kjempebra max for en på din størrelse. Flinke gullet. Du var nesten den som benket mest av alle jentene i hele engasjement! :)!";
+                    fourthCorrectMessage.style.color = "green";
+                    
+                    var fourthMessageContainer = document.createElement("div");
+                    fourthMessageContainer.appendChild(fourthCorrectMessage);
+                    fourthQuestionForm.appendChild(fourthMessageContainer);
+
+                    document.getElementById('fifthQuestion').style.display = 'block';
+
+                    // Remove or hide the error message if it exists
+                    var fourthErrorMessage = document.getElementById('fourthErrorMessage');
+                    if (fourthErrorMessage) {
+                        fourthErrorMessage.remove(); // This will remove the error message if found
+                    }
+                } else {
+                    // Display error message for incorrect answer
+                    var fourthErrorMessage = document.createElement('p');
+                    fourthErrorMessage.textContent = 'Nå må du tenke deg om!! Du kan bedre enn som så!!';
+                    fourthErrorMessage.style.color = 'red';
+                    fourthErrorMessage.id = 'fourthErrorMessage';
+
+                    // Check if error message exists before appending it
+                    if (!document.getElementById('fourthErrorMessage')) {
+                        fourthQuestionForm.appendChild(fourthErrorMessage);
+                        document.getElementById('fifthQuestion').style.display = 'none';
+                    }
+                }
+            });
+
+
+
+
+
+
+            fifthQuestionForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent default form submission
+
+                    var submittedFifthAnswer = fifthQuestionAnswer.value.trim();
+
+                    if (submittedFifthAnswer === correctFifthAnswer) {
+                        fifthQuestionAnswer.style.backgroundColor = '#8BC34A';
+                        fifthQuestionAnswer.disabled = true;
+                        fifthSubmitBtn.disabled = true;
+
+                        var fifthCorrectMessage = document.createElement("p");
+                        fifthCorrectMessage.textContent = "WOW, du kan jo alt!";
+                        fifthCorrectMessage.style.color = "green";
+                        
+                        var fifthMessageContainer = document.createElement("div");
+                        fifthMessageContainer.appendChild(fifthCorrectMessage);
+                        fifthQuestionForm.appendChild(fifthMessageContainer);
+
+                        document.getElementById('sixthQuestion').style.display = 'block';
+
+                        
+                    } else {
+                        // Display error message for the fifth question
+                        var fifthErrorMessage = document.createElement('p');
+                        fifthErrorMessage.textContent = 'Nå må du tenke deg om!! Du kan bedre enn som så!!';
+                        fifthErrorMessage.style.color = 'red';
+
+                        if (!document.getElementById('fifthErrorMessage')) {
+                            fifthErrorMessage.id = 'fifthErrorMessage';
+                            fifthQuestionForm.appendChild(fifthErrorMessage);
+                            document.getElementById('sixthQuestion').style.display = 'none';
+                        }
+                    }
+            });
+
+
+
+            var isSixthQuestionCorrect = false;
+
+            sixthQuestionForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent default form submission
+
+                    var submittedSixthAnswer = sixthQuestionAnswer.value.trim();
+                    var correctSixthAnswer = "03-07-2023"; // Define the correct answer for the sixth question
+
+                    if (submittedSixthAnswer === "03-07-2023") {
+                        isSixthQuestionCorrect = true;
+
+                    if (submittedSixthAnswer === correctSixthAnswer) {
+                        sixthQuestionAnswer.style.backgroundColor = '#8BC34A';
+                        sixthQuestionAnswer.disabled = true;
+                        sixthSubmitBtn.disabled = true;
+
+                        var sixthCorrectMessage = document.createElement("p");
+                        sixthCorrectMessage.textContent = "Du slutter aldri å imponere du!";
+                        sixthCorrectMessage.style.color = "green";
+                        
+                        var sixthMessageContainer = document.createElement("div");
+                        sixthMessageContainer.appendChild(sixthCorrectMessage);
+                        sixthQuestionForm.appendChild(sixthMessageContainer);
+
+                        finalMessage.textContent = 'Kodene til kofferten er 289 på venstre side og 982 på høyre. Skyv knappen ved siden av koden fra koden for å åpne!';
+                        finalMessage.style.color = '#8BC34A';
+
+                        
+                        
+                    
+                 
+                    }} else {
+                        // Display error message for the fifth question
+                        var sixthErrorMessage = document.createElement('p');
+                        sixthErrorMessage.textContent = 'Nå må du tenke deg om!! Du kan bedre enn som så!!';
+                        sixthErrorMessage.style.color = 'red';
+
+                        if (!document.getElementById('sixthErrorMessage')) {
+                            sixthErrorMessage.id = 'sixthErrorMessage';
+                            sixthQuestionForm.appendChild(sixthErrorMessage);
+                        }
+                    }
+                        if (SixthQuestionCorrect) {
+                            document.getElementById('svarDiv').style.display = 'block';
+                        
+                        }
+            });
+
+
+
+            });
+
+    
+
+
     </script>
+    <head>            
+        <style>
+            body {
+                background-image: url("https://thumbs.dreamstime.com/b/red-christmas-bal-17423908.jpg");               
+                background-position: center;                
+            }
+        </style>
+    </head>
 
     <h1 align="center">Julepresang</h1>
-    <h2 align="center">Du trodde vel ikke du skulle få julegave uten å jobbe for den?</h2>
-    <h3 align="center">For å få koden, må du vise at du har fulgt med dette året!</h3>
+    <h6 align="center">For å få koden, må du vise at du har følgt med dette året!</h6>
 
     <form action="{{ url_for('views.nora') }}" method="POST" align="center" id="answerForm">
         <p> </p>
@@ -33,8 +305,76 @@
         <input type="text" name="svar" id="svar">
         <button type="submit" id="submitBtn">Sjekk svaret</button>
     </form>
+        <!-- Next question input initially hidden -->
+        <div id="nextQuestion" style="display: none;">
+            <h6 align="center">Neste spørsmål:</h6>
+            <form action="{{ url_for('views.nora') }}" method="POST" align="center" id="nextQuestionForm">
+                <label for="nextQuestionAnswer">Hvem hadde høyest max i benk av jentene i engasjement, skriv inn fornavn:</label>
+                <input type="text" name="nextQuestionAnswer" id="nextQuestionAnswer">
+                <button type="submit" id="nextSubmitBtn">Sjekk svaret</button>
+            </form>
+        </div>
+            <div id="thirdQuestion" style="display: none;">
+                <h6 align="center">Spørsmål 3:</h6>
+                <form action="{{ url_for('views.nora') }}" method="POST" align="center" id="thirdQuestionForm">
+                    <label for="thirdQuestionAnswer">Hva var den høyeste maxen blant jentene i kg?</label>
+                    <input type="text" name="thirdQuestionAnswer" id="thirdQuestionAnswer">
+                    <button type="submit" id="thirdSubmitBtn">Sjekk svaret</button>
+                </form>
+            </div>
+
+            <div id="fourthQuestion" style="display: none;">
+                <h6 align="center"> spørsmål 4</h6>
+                <form action="{{ url_for('views.nora') }}" method="POST" align="center" id="fourthQuestionForm">
+                    <label for="fourthQuestinAnswer">Hva er din egen max i kg?</label>
+                    <input type="text" name="fourthQuestionAnswer" id="fourthQuestionAnswer">
+                    <button type="submit" id="fourthSubmitBtn">Sjekk svaret</button>
+                </form>
+            </div>
+
+            <div id="fifthQuestion" style="display: none;">
+                <h6 align="center"> spørsmål 5</h6>
+                <form action="{{ url_for('views.nora') }}" method="POST" align="center" id="fifthQuestionForm">
+                    <label for="fifthQuestinAnswer">Hvilken dato var første gang jeg møtte din koselige familie? Skriv inn: [dd-mm-YYYY]:?</label>
+                    <input type="text" name="fifthQuestionAnswer" id="fifthQuestionAnswer">
+                    <button type="submit" id="fifthSubmitBtn">Sjekk svaret</button>
+                </form>
+            </div>
 
 
+
+            <div id="sixthQuestion" style="display: none;">
+                <h6 align="center"> spørsmål 6</h6>
+                <h6 align="center"> Dette spørsmålet kan kanskje avgjøre alt!!</h6>
+
+                <form action="{{ url_for('views.nora') }}" method="POST" align="center" id="sixthQuestionForm">
+                    <label for="sixthQuestinAnswer">Hvilken dato tryglet du meg om å bli et kjæreste par? Skriv inn: [dd-mm-YYYY]</label>
+                    <input type="text" name="sixthQuestionAnswer" id="sixthQuestionAnswer">
+                    <button type="submit" id="sixthSubmitBtn">Sjekk svaret</button>
+                </form>
+                <p id="finalMessage" align="center"></p>
+            </div>
+
+                <form>
+                    <label for="toggleBlock">Toggle Block Visibility:</label>
+                    <input type="checkbox" id="toggleBlock" onchange="toggleVisibility()">
+                </form>
+                
+                <div id="svarDiv" style="display: none;">
+                    <h6 align="center"> Prøver å jukse ja!! Det noteres!!</h6>
+                </div>
+                
+                <button onclick="showSvarDiv()">Vis svaret</button>
+                
+                <script>
+                    function showSvarDiv() {
+                        var svarDiv = document.getElementById('svarDiv');
+                        svarDiv.style.display = 'block';
+                    }
+                </script>
+
+            
+
+            
 {% endblock %}
-
 

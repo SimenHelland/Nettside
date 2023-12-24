@@ -4,7 +4,7 @@ from .models import Note
 from . import db
 import json
 import turtle as trt
-from .MÅL_python import mål
+from .målet import mål
 
 
 
@@ -44,19 +44,5 @@ def delete_note():
 @views.route("/nora-mappe", methods=['GET', 'POST'])
 @login_required
 def nora():
-    trt.setup(800,800,1200)
-    trt.hideturtle()
-    trt.speed(0)
-    trt.pensize(10)
-
-    mål()
-
-    if request.method == "POST":
-        sporsmol1 = request.form.get("svar") 
-
-        if sporsmol1 == "22-07-2003":
-            flash("Veldig bra!!. Elegant start!!", category='success')
-        else:
-            flash("Din sviker!! Prøv igjen :(", category="error")
-
-    return render_template("nora_mappe.html") 
+    flash(f"Elegant!!", category="success")
+    return render_template("nora_mappe.html")
